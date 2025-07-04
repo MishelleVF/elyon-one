@@ -23,7 +23,7 @@ export default function NewProcessPage() {
     'Sofía Herrera'
   ]
 
-  // Asignación por defecto para cada uno de los 11 pasos
+  // Asignación por defecto de responsables
   const defaultAsignados = [
     'Roberto Jiménez',
     'Isabela Martínez',
@@ -53,13 +53,28 @@ export default function NewProcessPage() {
     'Recibe correo “Pase de Operaciones a Facturación”; concilia los documentos de la carpeta “Anticipos y gastos” versus los pagos realizados; da conformidad, emite factura y envía correo al cliente con toda la documentación'
   ]
 
-  // Genera el array inicial de etapas con trabajador y descripción por defecto
+  // Tiempos esperados por paso
+  const defaultTiempos = [
+    '24 horas',
+    '1 hora',
+    '8 horas',
+    '24 horas',
+    '2 horas',
+    '48 horas',
+    '48 horas',
+    '2 horas',
+    '2 horas',
+    '12 horas',
+    '24 horas'
+  ]
+
+  // Inicializa las etapas con trabajador, descripción y tiempo esperado por defecto
   const initialEtapas = Array.from({ length: 11 }, (_, i) => ({
     paso: i + 1,
     trabajador: defaultAsignados[i] || '',
     descripcion: defaultDescriptions[i] || '',
     tarea: 'Pendiente',
-    tiempoEsperado: ''    // <--- renombrado aquí
+    tiempoEsperado: defaultTiempos[i] || ''
   }))
 
   const [form, setForm] = useState({
@@ -69,13 +84,11 @@ export default function NewProcessPage() {
     etapas: initialEtapas
   })
 
-  // Redirige al login si no hay usuario
   if (!isLoading && !user) {
     router.replace('/login')
     return null
   }
 
-  // Maneja cambios en inputs y selects
   const handleChange = (e, idx, field) => {
     if (idx == null) {
       setForm({ ...form, [e.target.name]: e.target.value })
@@ -86,19 +99,15 @@ export default function NewProcessPage() {
     }
   }
 
-  // Al enviar, enviamos a la API (dummy) y redirigimos
   const handleSubmit = async (e) => {
     e.preventDefault()
     console.log('Enviar a API:', form)
-    // await fetch('/api/processes', { method: 'POST', body: JSON.stringify(form) })
-    router.push('/procesos')
+    router.push('/principal')
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6 p-6 bg-white rounded shadow">
       <h1 className="text-2xl font-bold">Registrar Nuevo Proceso</h1>
-
-      {/* Datos generales */}
       <div className="grid grid-cols-3 gap-4">
         <div>
           <label className="block text-sm font-medium">ID Cliente</label>
@@ -134,8 +143,6 @@ export default function NewProcessPage() {
           />
         </div>
       </div>
-
-      {/* Tabla dinámica de 11 pasos */}
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
@@ -184,7 +191,7 @@ export default function NewProcessPage() {
                 </td>
                 <td className="px-2 py-1">
                   <input
-                    value={etapa.tiempoEsperado}         // <--- y aquí
+                    value={etapa.tiempoEsperado}
                     onChange={(e) => handleChange(e, idx, 'tiempoEsperado')}
                     placeholder="e.g. 1 día, 3h"
                     className="border rounded px-1 py-1 w-full"
@@ -195,7 +202,6 @@ export default function NewProcessPage() {
           </tbody>
         </table>
       </div>
-
       <button
         type="submit"
         className="mt-4 px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
