@@ -15,7 +15,7 @@ export default function NewProcessPage() {
       paso: i + 1,
       trabajador: '',
       descripcion: '',
-      tarea: '',
+      tarea: 'Pendiente',
       tiempoAhorrado: ''
     }))
   })
