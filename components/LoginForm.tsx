@@ -80,7 +80,7 @@ export default function LoginForm() {
         role: "admin",
       })
 
-      router.push("/carga")
+        router.push("/principal")
     } catch (error) {
       console.error("Error al iniciar sesión:", error)
       setErrors({

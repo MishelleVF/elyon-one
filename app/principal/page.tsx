@@ -1,6 +1,8 @@
-"use client"
+'use client'
 
 import { useEffect, useState } from "react"
+import Link from 'next/link'
+import { PlusCircle } from 'lucide-react'
 import ProcessTable from "@/components/ProcessTable"
 import { useAuth } from "@/context/AuthContext"
 import { redirect } from "next/navigation"
@@ -82,9 +84,18 @@ export default function CargaPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold">Procesos de Carga</h1>
-        <p className="text-gray-500">Gestión de procesos en fase de agente de carga</p>
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-2xl font-bold">Procesos de Carga</h1>
+          <p className="text-gray-500">Gestión de procesos en fase de agente de carga</p>
+        </div>
+        <Link
+          href="/principal/nuevoproceso"
+          className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+        >
+          <PlusCircle size={18} />
+          <span>Nuevo Proceso</span>
+        </Link>
       </div>
 
       <ProcessTable data={processes} columns={columns} baseUrl="/procesos" />

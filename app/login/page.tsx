@@ -1,28 +1,34 @@
 import LoginForm from "@/components/LoginForm"
 import Image from "next/image"
+import bg from "@/app/login/loginfondo.png"
 
 export default function LoginPage() {
   return (
-    <div className="flex min-h-[80vh] items-center justify-center">
-      <div className="grid md:grid-cols-2 gap-10 w-full max-w-4xl p-4 bg-white rounded-xl shadow-lg">
-        <div className="flex flex-col justify-center space-y-6">
+    <div className="relative min-h-screen">
+      {/* Imagen de fondo */}
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src={bg}
+          alt="Fondo de login"
+          fill
+          className="object-cover"
+          priority
+        />
+      </div>
+
+      {/* Opcional: overlay semi-transparente si quieres atenuar la imagen */}
+      <div className="absolute inset-0 bg-black/30 -z-5"></div>
+
+      {/* Contenedor del form, alineado a la derecha */}
+      <div className="relative z-10 flex items-center justify-end min-h-screen p-6">
+        <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-6">
           <div className="space-y-2 text-center md:text-left">
-            <h1 className="text-3xl font-bold tracking-tighter">Bienvenido a Elyon One</h1>
-            <p className="text-gray-500">Sistema de tracking de procesos de facturación y aduanas</p>
+            <h1 className="text-3xl font-bold tracking-tight">Bienvenido a Elyon One</h1>
+            <p className="text-gray-500">
+              Sistema de tracking de procesos de facturación y aduanas
+            </p>
           </div>
           <LoginForm />
-        </div>
-        <div className="hidden md:flex items-center justify-center bg-gray-50 rounded-lg">
-          <div className="relative w-full h-full max-h-80">
-            <Image
-              src="/placeholder.svg?height=400&width=400"
-              alt="Elyon One"
-              width={400}
-              height={400}
-              className="object-contain"
-              priority
-            />
-          </div>
         </div>
       </div>
     </div>

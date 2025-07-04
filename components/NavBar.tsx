@@ -27,8 +27,7 @@ export default function NavBar() {
   }
 
   const navItems = [
-    { href: "/carga", label: "Carga", icon: <Truck size={20} /> },
-    { href: "/aduanas", label: "Aduanas", icon: <FileText size={20} /> },
+    { href: "/principal", label: "Procesos", icon: <Truck size={20} /> },
     { href: "/historial", label: "Historial", icon: <History size={20} /> },
     { href: "/ranking", label: "Ranking", icon: <Trophy size={20} /> },
     { href: "/configuracion", label: "Configuración", icon: <Settings size={20} /> },
