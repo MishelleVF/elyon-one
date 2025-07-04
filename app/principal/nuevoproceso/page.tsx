@@ -144,7 +144,7 @@ export default function NewProcessPage() {
               <th className="px-2 py-2 text-left">Trabajador</th>
               <th className="px-2 py-2 text-left">Descripción</th>
               <th className="px-2 py-2 text-left">Tarea</th>
-              <th className="px-2 py-2 text-left">Tiempo Esperado</th> {/* <--- aquí */}
+              <th className="px-2 py-2 text-left">Tiempo Esperado</th>
             </tr>
           </thead>
           <tbody>
