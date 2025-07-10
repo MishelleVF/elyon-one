@@ -169,47 +169,6 @@ export default function RankingPage() {
             </ul>
           </div>
         </div>
-
-        {/* Ranking por documentos procesados */}
-        <div className="bg-white rounded-lg shadow overflow-hidden">
-          <div className="bg-green-500 text-white px-6 py-4 flex items-center">
-            <FileText className="mr-2" size={20} />
-            <h2 className="text-lg font-semibold">Top Documentos Procesados</h2>
-          </div>
-          <div className="p-6">
-            <ul className="space-y-4">
-              {rankings.documentosProcesados.map((user, index) => (
-                <li key={user.id} className="flex items-center">
-                  <div className="flex-shrink-0 mr-4">
-                    <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold ${
-                        index === 0
-                          ? "bg-yellow-400"
-                          : index === 1
-                            ? "bg-gray-400"
-                            : index === 2
-                              ? "bg-amber-600"
-                              : "bg-green-500"
-                      }`}
-                    >
-                      {index + 1}
-                    </div>
-                  </div>
-                  <div className="flex-shrink-0 mr-4">
-                    <img src={user.avatar || "/placeholder.svg"} alt={user.nombre} className="w-10 h-10 rounded-full" />
-                  </div>
-                  <div className="flex-grow">
-                    <p className="font-medium">{user.nombre}</p>
-                    <p className="text-sm text-gray-500">{user.departamento}</p>
-                  </div>
-                  <div className="flex-shrink-0 text-right">
-                    <p className="font-bold text-green-500">{user.documentos}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
       </div>
     </div>
   )
