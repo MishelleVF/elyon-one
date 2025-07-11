@@ -2,62 +2,45 @@ import React from 'react'
 
 export default function ProcessDetail({ process }) {
   return (
-    <div className="overflow-x-auto bg-white shadow rounded-lg">
-      <table className="min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-50">
+    <div className="overflow-x-auto rounded-lg border border-gray-200">
+      <table className="min-w-full text-sm text-left">
+        <thead className="bg-gray-100 text-gray-700">
           <tr>
-            {/* Columna Paso */}
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Paso
-            </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Departamento
-            </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Trabajador
-            </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Descripción
-            </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Tarea
-            </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Tiempo Ahorrado
-            </th>
+            <th className="px-4 py-2">PASO</th>
+            <th className="px-4 py-2">DEPARTAMENTO</th>
+            <th className="px-4 py-2">TRABAJADOR</th>
+            <th className="px-4 py-2">DESCRIPCIÓN</th>
+            <th className="px-4 py-2">TAREA</th>
+            <th className="px-4 py-2">INICIO</th>
+            <th className="px-4 py-2">FIN</th>
+            <th className="px-4 py-2">TIEMPO AHORRADO</th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
-          {process.etapas.map((etapa) => (
-            <tr key={etapa.paso}>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                Paso {etapa.paso}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                {etapa.departamento}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                {etapa.trabajador}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                {etapa.descripcion}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+        <tbody>
+          {process.etapas.map((etapa, idx) => (
+            <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+              <td className="px-4 py-2">Paso {etapa.paso}</td>
+              <td className="px-4 py-2">{etapa.departamento}</td>
+              <td className="px-4 py-2">{etapa.trabajador}</td>
+              <td className="px-4 py-2">{etapa.descripcion}</td>
+              <td className="px-4 py-2">
                 <span
-                  className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                  className={`inline-block px-2 py-1 rounded text-xs font-semibold ${
                     etapa.tarea === 'Completado'
-                      ? 'bg-green-100 text-green-800'
+                      ? 'bg-green-100 text-green-700'
+                      : etapa.tarea === 'Atrasado'
+                      ? 'bg-red-100 text-red-700'
                       : etapa.tarea === 'En proceso'
-                      ? 'bg-yellow-100 text-yellow-800'
-                      : 'bg-gray-100 text-gray-800'
+                      ? 'bg-yellow-100 text-yellow-700'
+                      : 'bg-gray-100 text-gray-700'
                   }`}
                 >
                   {etapa.tarea}
                 </span>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                {etapa.tiempoAhorrado}
-              </td>
+              <td className="px-4 py-2">{etapa.inicioTarea}</td>
+              <td className="px-4 py-2">{etapa.finTarea}</td>
+              <td className="px-4 py-2">{etapa.tiempoAhorrado}</td>
             </tr>
           ))}
         </tbody>
